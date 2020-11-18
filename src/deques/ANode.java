@@ -8,11 +8,12 @@ public abstract class ANode<T> {
 
     abstract int size();
 
+    /**
+     * EFFECT: insert this node in between the two given nodes
+     */
     public void insertBetween(ANode<T> prev, ANode<T> next) {
-        this.next = next;
-        next.prev = this;
-        this.prev = prev;
-        prev.next = this;
+        this.insertAfter(next);
+        this.insertBefore(prev);
     }
 
     /**
@@ -21,6 +22,14 @@ public abstract class ANode<T> {
     public void insertAfter(ANode<T> other) {
         this.next = other;
         other.prev = this;
+    }
+
+    /**
+     * EFFECT: insert the other node before this one
+     */
+    public void insertBefore(ANode<T> other) {
+        this.prev = other;
+        other.next = this;
     }
 
     public abstract T removeFromList();
