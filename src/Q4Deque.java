@@ -1,3 +1,4 @@
+import deques.ANode;
 import deques.Deque;
 import deques.Node;
 import deques.Sentinel;
@@ -5,7 +6,6 @@ import tester.Tester;
 
 /**
  * Set up an abstract class so that you can see exactly what I have added to the Deque class
- * @param <T>
  */
 public class Q4Deque<T> extends Deque<T>{
 
@@ -18,12 +18,35 @@ public class Q4Deque<T> extends Deque<T>{
     }
 
     /**
-     * EFFECT: append the nodes in the other deque to the end of this one
+     * append all the items of the given Deque onto the current one
+     * and remove the items from that given Deque.
      */
     void append(Q4Deque<T> other) {
-        return;
+
+        while(other.size() > 0) {
+            this.addAtTail(other.removeFromHead());
+        }
     }
 
+
+    /**
+     * EFFECT: append the nodes in the other deque to the end of this one
+     */
+    void justAppend(Q4Deque<T> other) {
+
+        // end of this deque: this.header.prev
+        // beg of other deque: other.header.next
+
+        ANode<T> endOfMe = this.header.prev;
+        ANode<T> begOfOther = other.header.next;
+
+        endOfMe.next = begOfOther;
+        begOfOther.prev = endOfMe;
+
+
+
+        return;
+    }
 }
 
 class ExamplesDeques {

@@ -26,15 +26,20 @@ public class Q3AppendTestSolved {
         t.checkExpect(ints1.length(), 1);
         t.checkExpect(ints2.length(), 2);
         t.checkExpect(ints3.length(), 2);
+        t.checkExpect(ints4.length(), 2);
 
+
+        //1            2
         ints1.append(ints2);
 
         t.checkExpect(ints1.length(), 3); // TODO: fill in the blank
 
+        //2           2
         ints2.append(ints3);
 
         t.checkExpect(ints1.length(), 5); // TODO: fill in the blank
 
+        //
         ints2.append(ints4);
 
         t.checkExpect(ints2.length(), 6); // TODO: fill in the blank

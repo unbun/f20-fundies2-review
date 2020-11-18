@@ -11,8 +11,60 @@ import java.util.ArrayList;
  *
  * Do not use recursion; use appropriate loop forms instead.
  */
+
+
+
+/*
+
+       source                     seq
+[1, 2, 3, 3,   4, 5, 6, 7]      [3, 4, 5]   -> true
+      2   2+1  2+2               0  1  2
+
+for (each element in sequence)
+   source.contains(element)      [1, 2, 3, 6, 4, 5, 6, 7]      [3, 4, 5]   -> true, but should be false
+
+for(each element in source)
+   If this element (startPoint), is the first element of seq,
+   This could be the start of the sub-sequence in source
+
+  for(n = [0, sequence.length])
+     if the n-th element of sequence exists at
+        source's (startPoint) + n, then we are still in a possible sequence
+ */
+
+// break : exit the for-loop
+// continue: skip everything in the for-loop that is after that line, but continue iterating
+
 public class Q2ArrayUtils {
+
     public boolean containsSequence(ArrayList<Integer> source, ArrayList<Integer> sequence) {
+        // if the source is smaller than the sequence, return false
+       for(int srcIdx = 0; srcIdx < source.size(); srcIdx++) {
+            // if this element (in source)
+            // is a potential starting point (i.e. the start of sequence)
+
+            int startPoint = srcIdx;
+
+            if(source.get(startPoint).equals(sequence.get(0))){
+                for(int seqIdx = 0; seqIdx < sequence.size(); seqIdx++) {
+
+                    // check that startPoint + seqIdx will work
+                    // OR in outer-for loop, change end condition
+                    if(startPoint + seqIdx >= source.size()) {
+                        return false;
+                    }
+
+                    if(!source.get(startPoint + seqIdx).equals(sequence.get(seqIdx))){
+                        break;
+                    } else if (seqIdx == sequence.size() - 1){
+                        // if we made it to the end of the sequence without breaking, we
+                        // have a full sub-sequence
+                        return true;
+                    }
+                }
+            }
+        }
+
         return false;
     }
 }

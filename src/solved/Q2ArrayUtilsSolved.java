@@ -45,7 +45,7 @@ public class Q2ArrayUtilsSolved {
 
 class ExamplesQ2 {
     public static void main(String args[]) {
-        ArrayList<Integer> ints1 = Utils.makeList(1,2,3,4,5,6);
+        ArrayList<Integer> ints1 = Utils.makeList(2, 3, 1,2,3,5,6);
         ArrayList<Integer> ints2 = Utils.makeList(2,3, 4);
         ArrayList<Integer> mt = Utils.makeList();
 
@@ -54,9 +54,6 @@ class ExamplesQ2 {
         Utils.printObject("Mt Test 1", Q2ArrayUtilsSolved.containsSequence(ints2, mt));
         Utils.printObject("Mt Test 1", Q2ArrayUtilsSolved.containsSequence(mt, ints2));
         Utils.printObject("Mt Test 1", Q2ArrayUtilsSolved.containsSequence(mt, mt));
-
-
-
 
     }
 
