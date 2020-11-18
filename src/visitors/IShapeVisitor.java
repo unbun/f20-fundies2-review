@@ -15,6 +15,9 @@ import tester.Tester;
  *
  * @author nicolasburniske
  *
+ * TODO: Try adding a Triangle or another Shape and extending the functionality of the existing AreaVisitor
+ * TODO: Try doing a perimeter visitor
+ *
  */
 
 // Represents a 2 dimensional Shape
@@ -83,9 +86,14 @@ class ExamplesVisitor {
         // these are two equivalent ways to execute the visitor
         // either have the type accept the visitor,
         // or have the visitor apply itself
+
+        // Ask yourself: WHY DOESN'T THIS WORK?
+        // t.checkInexact(visitor.visit(square1), 50.0, 0.0001);
         t.checkInexact(visitor.apply(square1), 50.0, 0.0001);
         t.checkInexact(square1.accept(visitor), 50.0, 0.0001);
 
+        // Ask yourself: WHY DOESN'T THIS WORK?
+        // t.checkInexact(visitor.visit(circle1), 50.0, 0.0001);
         t.checkInexact(visitor.apply(circle1), 314.159, 0.0001);
         t.checkInexact(circle1.accept(visitor), 314.159, 0.0001);
     }
