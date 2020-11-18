@@ -4,10 +4,10 @@ package solved;
 // TASK:
 // Find the combined lengths of all strings inside a List<String>
 
-import lists.ConsList;
-import lists.IList;
-import lists.IListVisitor;
-import lists.MtList;
+import ilists.ConsList;
+import ilists.IList;
+import ilists.IListVisitor;
+import ilists.MtList;
 
 public class LengthVisitorSolved implements IListVisitor<String, Integer> {
 

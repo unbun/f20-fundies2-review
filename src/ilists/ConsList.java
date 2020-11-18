@@ -1,4 +1,4 @@
-package lists;
+package ilists;
 
 public class ConsList<T> implements IList<T> {
     public T first;

@@ -1,47 +1,18 @@
-import java.util.function.Predicate;
+import deques.*;
 import tester.Tester;
 
-public class Q4Deque<T> {
-    Sentinel<T> header;
+/**
+ * Set up an abstract class so that you can see exactly what I have added to the Deque class
+ * @param <T>
+ */
+public class Q4Deque<T> extends Deque<T>{
 
     Q4Deque() {
-        this.header = new Sentinel<T>();
+        super();
     }
 
     Q4Deque(Sentinel<T> header) {
-        this.header = header;
-    }
-
-    int size() {
-        return this.header.next.size();
-    }
-
-    void addAtHead(T data) {
-        Node<T> dataNode = new Node<T>(data);
-        dataNode.insertBetween(this.header, this.header.next);
-    }
-
-    void addAtTail(T data) {
-        Node<T> dataNode = new Node<T>(data);
-        dataNode.insertBetween(this.header.prev, this.header);
-    }
-
-    T removeFromHead() {
-        return this.header.next.removeFromList();
-    }
-
-    T removeFromTail() {
-        return this.header.prev.removeFromList();
-    }
-
-    ANode<T> find(Predicate<T> pred) {
-        return this.header.next.find(pred);
-    }
-
-    void removeNode(ANode<T> node) {
-        if (node != this.header) {
-            node.removeFromList();
-        }
+        super(header);
     }
 
     /**
@@ -49,135 +20,12 @@ public class Q4Deque<T> {
      */
     void append(Q4Deque<T> other) {
         // put the other's first after this's last
-        this.header.prev.insertAfter(other.header.next);
+        this.header.prev.insertAfter(other.header.next); // added to the ANode class
 
         // put this header after other's last
-        other.header.prev.insertAfter(this.header);
+        other.header.prev.insertAfter(this.header); // added to the ANode class
     }
 
-    void printDeque(){
-        System.out.print("[");
-        this.header.next.print();
-    }
-
-    void printDequeBackwards(){
-        System.out.print("[");
-        this.header.prev.printBackwards();
-    }
-}
-
-abstract class ANode<T> {
-    ANode<T> next;
-    ANode<T> prev;
-
-    abstract int size();
-
-    void insertBetween(ANode<T> prev, ANode<T> next) {
-        this.next = next;
-        next.prev = this;
-        this.prev = prev;
-        prev.next = this;
-    }
-
-    /**
-     * EFFECT: insert the other node after this one
-     */
-    void insertAfter(ANode<T> other) {
-        this.next = other;
-        other.prev = this;
-    }
-
-    abstract T removeFromList();
-
-    abstract ANode<T> find(Predicate<T> pred);
-
-    abstract void print();
-
-    abstract void printBackwards();
-}
-
-class Node<T> extends ANode<T> {
-    T data;
-
-    Node(T data) {
-        this.data = data;
-        this.next = null;
-        this.prev = null;
-    }
-
-    Node(T data, ANode<T> next, ANode<T> prev) {
-        if (next == null || prev == null) {
-            throw new IllegalArgumentException("Cannot construct Node with explicit null next or prev");
-        }
-        this.data = data;
-        this.next = next;
-        next.prev = this;
-        this.prev = prev;
-        prev.next = this;
-    }
-
-    int size() {
-        return 1 + this.next.size();
-    }
-
-    T removeFromList() {
-        this.prev.next = this.next;
-        this.next.prev = this.prev;
-        return this.data;
-    }
-
-    ANode<T> find(Predicate<T> pred) {
-        if (pred.test(this.data)) {
-            return this;
-        } else {
-            return this.next.find(pred);
-        }
-    }
-
-    @Override
-    void print() {
-        System.out.print(data.toString() + " ");
-        this.next.print();
-    }
-
-    @Override
-    void printBackwards() {
-        System.out.print(data.toString() + " ");
-        this.prev.printBackwards();
-    }
-}
-
-class Sentinel<T> extends ANode<T> {
-    Sentinel() {
-        this.next = this;
-        this.prev = this;
-    }
-
-    int size() {
-        return 0;
-    }
-
-    T removeFromList() {
-        throw new RuntimeException("Cannot remove item from empty list");
-    }
-
-    ANode<T> find(Predicate<T> pred) {
-        return this;
-    }
-
-    @Override
-    void print() {
-        System.out.println("]");
-    }
-
-    @Override
-    void printBackwards() {
-        System.out.println("]");
-    }
-
-    String asString() {
-        return "<sentinel>";
-    }
 }
 
 class ExamplesDeques {

@@ -1,6 +1,6 @@
-import lists.ConsList;
-import lists.IList;
-import lists.MtList;
+import ilists.ConsList;
+import ilists.IList;
+import ilists.MtList;
 import tester.Tester;
 
 @SuppressWarnings("ALL")

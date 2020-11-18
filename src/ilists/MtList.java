@@ -1,4 +1,4 @@
-package lists;
+package ilists;
 
 public class MtList<T> implements IList<T> {
 

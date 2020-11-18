@@ -2,9 +2,9 @@ package utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import lists.ConsList;
-import lists.IList;
-import lists.MtList;
+import ilists.ConsList;
+import ilists.IList;
+import ilists.MtList;
 
 public class Utils {
 

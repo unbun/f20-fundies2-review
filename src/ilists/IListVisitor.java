@@ -1,4 +1,4 @@
-package lists;
+package ilists;
 
 import java.util.function.Function;
 
