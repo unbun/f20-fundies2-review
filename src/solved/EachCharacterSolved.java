@@ -52,7 +52,7 @@ class ECIteratorSolved2 implements Iterator<Character> {
         Character result = currString.charAt(0);
 
         // 2. Prep for the next result
-        currString = currString.substring(1);
+        currString = currString.substring(1); // cutting off the first character
 
         // 3. Return the result
         return result;
@@ -63,7 +63,7 @@ public class EachCharacterSolved implements Iterable<Character> {
 
     private String toIterateOver;
 
-    EachCharacterSolved(String toIterateOver) {
+    public EachCharacterSolved(String toIterateOver) {
         this.toIterateOver = toIterateOver;
     }
 
@@ -78,7 +78,7 @@ class ExamplesMain {
     public static void main(String[] args) {
 
         EachCharacterSolved emptyEC = new EachCharacterSolved("");
-        EachCharacterSolved happyEC = new EachCharacterSolved("happy");
+        EachCharacterSolved fooEC = new EachCharacterSolved("foo bar");
 
         /*
         emptyEC.iterator().hasNext() --> false
@@ -96,6 +96,6 @@ class ExamplesMain {
          */
 
         Utils.printIterable("Testing empty iter", emptyEC);
-        Utils.printIterable("Testing \"happy\" iter", happyEC);
+        Utils.printIterable("Testing \"foo bar\" iter", fooEC);
     }
 }
