@@ -1,3 +1,5 @@
+package other;
+
 import java.util.function.*;
 import java.util.Comparator;
 import tester.Tester;

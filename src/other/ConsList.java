@@ -1,4 +1,6 @@
-package ilists;
+package other;
+
+import visitors.IListVisitor;
 
 public class ConsList<T> implements IList<T> {
     public T first;

@@ -36,7 +36,7 @@ public abstract class ANode<T> {
 
     public abstract ANode<T> find(Predicate<T> pred);
 
-    public abstract void print();
+    public abstract String asString();
 
-    public abstract void printBackwards();
+    public abstract String asStringRev();
 }

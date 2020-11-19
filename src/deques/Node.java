@@ -44,14 +44,14 @@ public class Node<T> extends ANode<T> {
     }
 
     @Override
-    public void print() {
-        System.out.print(data.toString() + " ");
-        this.next.print();
+    public String asString() {
+        return data.toString() + " "
+            + this.next.asString();
     }
 
     @Override
-    public void printBackwards() {
-        System.out.print(data.toString() + " ");
-        this.prev.printBackwards();
+    public String asStringRev() {
+        return data.toString() + " "
+            + this.prev.asStringRev();
     }
 }

@@ -77,7 +77,7 @@ class AreaVisitor implements IShapeVisitor<Double> {
     }
 }
 
-class ExamplesVisitor {
+class ExamplesShapesVisit {
     IShapeVisitor<Double> visitor = new AreaVisitor();
     IShape square1 = new Square(5, 10);
     IShape circle1 = new Circle(10);

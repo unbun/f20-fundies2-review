@@ -1,4 +1,6 @@
-package ilists;
+package other;
+
+import visitors.IListVisitor;
 
 public interface IList<T> {
     // a visitor's "entry point" into a list

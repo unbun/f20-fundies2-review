@@ -45,13 +45,11 @@ public class Deque<T> {
         }
     }
 
-    public void printDeque(){
-        System.out.print("[");
-        this.header.next.print();
+    public String toString(){
+        return "[" + this.header.next.asString();
     }
 
-    public void printDequeBackwards(){
-        System.out.print("[");
-        this.header.prev.printBackwards();
+    public String toStringRev(){
+        return "[" + this.header.prev.asStringRev();
     }
 }

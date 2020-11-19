@@ -1,4 +1,7 @@
-package ilists;
+package other;
+
+
+import visitors.IListVisitor;
 
 public class MtList<T> implements IList<T> {
 

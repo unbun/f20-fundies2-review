@@ -1,4 +1,8 @@
+package arraylists;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import tester.Tester;
 
 /**
  * Design the method:
@@ -70,5 +74,27 @@ public class Q2ArrayUtils {
 }
 
 class ExamplesQ2 {
+
+    Q2ArrayUtils au = new Q2ArrayUtils();
+    ArrayList<Integer> ints1 = new ArrayList<>(
+        Arrays.asList(1, 2, 3, 4, 3, 4, 5)
+    );
+
+    ArrayList<Integer> ints2 = new ArrayList<>(
+        Arrays.asList(3, 4, 5)
+    );
+
+    ArrayList<Integer> ints3 = new ArrayList<>(
+        Arrays.asList(1, 2, 4)
+    );
+
+
+    void testContainsSeq(Tester t) {
+        t.checkExpect(au.containsSequence(ints1, ints2), true);
+        t.checkExpect(au.containsSequence(ints1, ints3), false);
+
+        t.checkExpect(au.containsSequence(ints2, ints1), false);
+        t.checkExpect(au.containsSequence(ints2, ints3), false);
+    }
 
 }

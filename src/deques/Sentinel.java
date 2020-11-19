@@ -24,16 +24,13 @@ public class Sentinel<T> extends ANode<T> {
     }
 
     @Override
-    public void print() {
-        System.out.println("]");
+    public String asString() {
+        return "]";
     }
 
     @Override
-    public void printBackwards() {
-        System.out.println("]");
+    public String asStringRev() {
+        return "]";
     }
 
-    String asString() {
-        return "<sentinel>";
-    }
 }

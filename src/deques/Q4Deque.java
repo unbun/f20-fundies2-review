@@ -1,11 +1,10 @@
-import deques.ANode;
-import deques.Deque;
-import deques.Node;
-import deques.Sentinel;
+package deques;
+
 import tester.Tester;
 
 /**
- * Set up an abstract class so that you can see exactly what I have added to the Deque class
+ * I set up an abstract class so that this file is just what we added
+ * for the problem
  */
 public class Q4Deque<T> extends Deque<T>{
 
@@ -18,10 +17,14 @@ public class Q4Deque<T> extends Deque<T>{
     }
 
     /**
-     * append all the items of the given Deque onto the current one
+     * EFFECT: append all the items of the given Deque onto the current one
      * and remove the items from that given Deque.
      */
     void append(Q4Deque<T> other) {
+
+        if(other.header == this.header) {
+            return;
+        }
 
         while(other.size() > 0) {
             this.addAtTail(other.removeFromHead());
@@ -31,6 +34,8 @@ public class Q4Deque<T> extends Deque<T>{
 
     /**
      * EFFECT: append the nodes in the other deque to the end of this one
+     * This doesn't accomplish everything the question asks for, but does
+     * technically append two deques
      */
     void justAppend(Q4Deque<T> other) {
 
@@ -42,8 +47,6 @@ public class Q4Deque<T> extends Deque<T>{
 
         endOfMe.next = begOfOther;
         begOfOther.prev = endOfMe;
-
-
 
         return;
     }
@@ -62,6 +65,7 @@ class ExamplesDeques {
             Node<String> bcd = new Node<String>("bcd", sortedHeader, abc);
             Node<String> cde = new Node<String>("cde", sortedHeader, bcd);
             new Node<String>("def", sortedHeader, cde);
+
             this.deque2 = new Q4Deque<String>(sortedHeader);
             Sentinel<String> unsortedHeader = new Sentinel<String>();
             Node<String> xyz = new Node<String>("xyz", unsortedHeader, unsortedHeader);
@@ -69,6 +73,7 @@ class ExamplesDeques {
             Node<String> qrs = new Node<String>("qrs", unsortedHeader, mno);
             Node<String> jkl = new Node<String>("jkl", unsortedHeader, qrs);
             new Node<String>("tuv", unsortedHeader, jkl);
+
             this.deque3 = new Q4Deque<String>(unsortedHeader);
             return true;
         } catch (Exception e) {
@@ -87,31 +92,27 @@ class ExamplesDeques {
     void testPrintAppend(Tester t) {
         this.initData(t);
 
-        System.out.println("\nDeque2: ");
-        this.deque2.printDeque();
+        t.checkExpect(this.deque2.toString(), "[abc bcd cde def ]");
 
-        System.out.println("\nDeque3: ");
-        this.deque3.printDeque();
+        t.checkExpect(this.deque3.toString(), "[xyz mno qrs jkl tuv ]");
 
         this.deque2.append(deque3);
-        System.out.println("\nAppended: ");
-        this.deque2.printDeque();
-        System.out.println("Appended backwards: ");
-        this.deque2.printDequeBackwards();
 
-        System.out.println("\nDeque3 after append: ");
-        this.deque3.printDeque();
-        System.out.println("Deque3 after append backwards: ");
-        this.deque3.printDequeBackwards();
+        t.checkExpect(this.deque2.toString(),
+            "[abc bcd cde def xyz mno qrs jkl tuv ]");
+
+        t.checkExpect(this.deque2.toStringRev(),
+            "[tuv jkl qrs mno xyz def cde bcd abc ]");
+
+        t.checkExpect(this.deque3.toString(), "[]");
     }
 
     void testPrintAppend2(Tester t) {
         this.initData(t);
-        System.out.println("\nDeque2: ");
-        this.deque2.printDeque();
 
+        // appending to itself will create different behaviors
         this.deque2.append(deque2);
-        System.out.println("\nAppended to itself: ");
-        this.deque2.printDeque();
+        t.checkExpect(this.deque2.toString(), "[abc bcd cde def ]");
+
     }
 }

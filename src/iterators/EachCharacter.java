@@ -1,12 +1,13 @@
+package iterators;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import solved.EachCharacterSolved;
 import tester.*;
 
 // Task:
-// Design the class EachCharacter.
-// EachCharacter should be an iterable class that given a string,
+// Design the class iterators.EachCharacter.
+// iterators.EachCharacter should be an iterable class that given a string,
 // will iterate over each character of the string
 class EachCharacter implements Iterable<Character> {
 
@@ -103,10 +104,41 @@ class ExamplesEC {
 
     /*
     void testFoo2(Tester t) {
-        Iterator<Character> fooIterator = new EachCharacterIterator("foo bar");
+        Iterator<Character> fooIterator = new iterators.EachCharacterIterator("foo bar");
         // now you can manually check next() and hasNext()
     }
      */
 
 
+}
+
+
+/////////////////////////////////////////////////////////////
+//////// Another way to do the string iteration /////////////
+
+class EachCharacterIterator2 implements Iterator<Character> {
+
+    private String currString;
+
+    public EachCharacterIterator2(String currString) {
+        this.currString = currString;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return currString.length() >= 1;
+    }
+
+    @Override
+    public Character next() {
+        //1. get current result (hasNext should have guaranteed this "works")
+        Character result = currString.charAt(0);
+
+        // 2. Prep for the next result
+        // cutting off the first character (without mutating the original string)
+        currString = currString.substring(1);
+
+        // 3. Return the result
+        return result;
+    }
 }
