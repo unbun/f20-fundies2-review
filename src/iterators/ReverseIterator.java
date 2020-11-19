@@ -17,6 +17,7 @@ import java.util.Stack;
 public class ReverseIterator<T> implements Iterator<T> {
     Stack<T> contents;
 
+    // NOTE: this will only work if the given Iterator is guarenteed to be finite)
     public ReverseIterator(Iterator<T> toReverse) {
         this.contents = new Stack<>();
         while (toReverse.hasNext()) {
