@@ -3,8 +3,13 @@ package deques;
 import tester.Tester;
 
 /**
- * I set up an abstract class so that this file is just what we added
- * for the problem
+ * You should have your own implementation of the Deque class, and it should be added to this
+ * folder.
+ * 
+ * This class extends that Deque class, with the only addition being
+ * the append() method.
+ * I have it set up this way so that it is clear what has been done
+ * for this problem specifically.
  */
 public class Q4Deque<T> extends Deque<T>{
 
